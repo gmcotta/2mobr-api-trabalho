@@ -13,5 +13,5 @@ app.use(cors());
 app.use('/api/v1/user', router);
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server online on http://localhost:${process.env.PORT}`);
+    console.log(`User server is online on http://localhost:${process.env.PORT}`);
 });

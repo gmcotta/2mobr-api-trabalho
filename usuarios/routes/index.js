@@ -74,7 +74,7 @@ router.post('/login', (req, res) => {
                 information: req.headers
             });
             info.save();
-            const payload = { username: userData.username };
+            const payload = { id: userData._id, username: userData.username };
             res.status(200).send({ output: 'Authenticated', payload, token });
         });
     });
