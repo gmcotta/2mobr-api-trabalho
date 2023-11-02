@@ -1,6 +1,6 @@
 # 2MOBR - API and Microservices Development
 
-Trabalho final para a disciplina de API and Microservices Development, do MBA de Mobile Development da FIAP.
+Trabalho final para a disciplina de API and Microservices Development, do MBA de Mobile Development da FIAP (versão com Docker).
 
 ## Atividade
 
@@ -32,16 +32,15 @@ Para a terceira parte da atividade, o aluno deve criar uma estrutura para cadast
 - Mongoose
 - JWT
 - Nodemon
+- Docker
 
 ## Como rodar o projeto
 
 1) Baixar o repositório
 2) Verificar se o NodeJS está instalado (estou usando a versão 18.18.2)
-3) Ter uma instância do MongoDB rodando (estou usando o MongoDB Atlas)
-4) Em cada pasta:
-- Rodar o comando `npm install` para instalar as dependências
-- Criar o arquivo `.env` baseado no `.env.example` e preencher as variáveis de ambiente (chave secreta do JWT, variáveis de configuração do MongoDB e, no caso do serviço dos usuários, o salt do bcrypt)
-- Rodar o comando `npm run dev` para iniciar a aplicação. Aparecerá uma mensagem `[service] server is online on port [port]`, onde [service] é o nome do serviço (Banking, Clients ou Users), e [port] é a porta definida no `.env`.
+3) Verificar se tem o Docker instalado
+4) Criar o arquivo `.env` baseado no `.env.example` e preencher as variáveis de ambiente (chave secreta do JWT, variáveis de configuração do MongoDB e as portas de cada serviço)
+5) Rodar o comando `docker compose up -d` para iniciar as aplicações
 
 ## Rotas
 
