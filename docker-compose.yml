@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:5.0.2
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$DB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASS
+    ports:
+      - $DB_PORT:$DB_PORT
+    volumes:
+      - db:/data/db
+
+  banking:
+    depends_on:
+      - mongodb
+    build: ./banking
+    env_file: ./.env
+    ports:
+      - $BANKING_PORT:$BANKING_PORT
+    environment:
+      - KEY_JWT=$KEY_JWT
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_NAME=$DB_NAME
+    stdin_open: true
+    tty: true
+
+  clients:
+    depends_on:
+      - mongodb
+    build: ./clients
+    env_file: ./.env
+    ports:
+      - $CLIENTS_PORT:$CLIENTS_PORT
+    environment:
+      - KEY_JWT=$KEY_JWT
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_NAME=$DB_NAME
+    stdin_open: true
+    tty: true
+
+  users:
+    depends_on:
+      - mongodb
+    build: ./users
+    env_file: ./.env
+    ports:
+      - $USERS_PORT:$USERS_PORT
+    environment:
+      - KEY_JWT=$KEY_JWT
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_NAME=$DB_NAME
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
